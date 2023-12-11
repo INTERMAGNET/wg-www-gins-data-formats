@@ -22,7 +22,8 @@ that the Edinburgh GIN stores alongside the data.
 
 ## MQTT architecture ##
 
-[Diagram of MQTT implementation at the Edinburgh GIN](https://github.com/INTERMAGNET/wg-www-gins-data-formats/assets/9884468/890b29c8-08b4-4f94-87da-78f1d80d1237).
+![Diagram of MQTT implementation at the Edinburgh GIN](https://github.com/INTERMAGNET/wg-www-gins-data-formats/assets/9884468/890b29c8-08b4-4f94-87da-78f1d80d1237).
+Diagram of MQTT implementation at the Edinburgh GIN
 
 A public facing [Mosquito](https://mosquitto.org/) MQTT broker will run at the British Geological Survey
 (BGS) at the Internet address imag-mqtt.bgs.ac.uk. IMOs and GINs (clients at insititutes A,B,C,... in the
