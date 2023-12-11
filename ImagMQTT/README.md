@@ -53,13 +53,11 @@ Where:
   Edinburgh GIN only accepts 1-second and 1-minute data, the only valid cadences
   are "pt1s" and "pt1m".
 - "publication-level" is a number indicating the level of processing applied to the data:
-<!-- HTML is neccessary because the default rendering of a numbered list uses *roman* numerals -->
-<ol type=1 start=1>
-  <li>The data is unprocessed and as recorded at the observatory with no changes made.</li>
-  <li>Some edits have been made such as gap filling and spike removal and a preliminary baseline added.</li>
-  <li>The data is at the level required for production of an initial bulletin or for quasi-definitive publication.</li>
-  <li>The data has been finalised and no further changes are intended.</li>
-</ol>
+
+  - 1 = The data is unprocessed and as recorded at the observatory with no changes made.
+  - 2 = Some edits have been made such as gap filling and spike removal and a preliminary baseline added.
+  - 3 = The data is at the level required for production of an initial bulletin or for quasi-definitive publication.
+  - 4 = The data has been finalised and no further changes are intended.
 
 ### Examples ###
 
@@ -186,13 +184,11 @@ JSON data message:
    Edinburgh GIN only accepts 1-second and 1-minute data, the only valid cadences
    are "pt1s" and "pt1m".
 5. "publicationLevel": A number indicating the level of processing applied to the data:
-<!-- HTML is neccessary because the default rendering of a numbered list uses *roman* numerals -->
-<ol type=1 start=1>
-  <li>The data is unprocessed and as recorded at the observatory with no changes made.</li>
-  <li>Some edits have been made such as gap filling and spike removal and a preliminary baseline added.</li>
-  <li>The data is at the level required for production of an initial bulletin or for quasi-definitive publication.</li>
-  <li>The data has been finalised and no further changes are intended.</li>
-</ol>
+
+  - 1 = The data is unprocessed and as recorded at the observatory with no changes made.
+  - 2 = Some edits have been made such as gap filling and spike removal and a preliminary baseline added.
+  - 3 = The data is at the level required for production of an initial bulletin or for quasi-definitive publication.
+  - 4 = The data has been finalised and no further changes are intended.
 
 The mandatory geomagnetic field data consists of either 3 or 4 arrays. The arrays must all be
 the same length. Valid arrays are:
