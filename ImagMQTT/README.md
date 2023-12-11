@@ -53,11 +53,13 @@ Where:
   Edinburgh GIN only accepts 1-second and 1-minute data, the only valid cadences
   are "pt1s" and "pt1m".
 - "publication-level" is a number indicating the level of processing applied to the data:
-
-  1. The data is unprocessed and as recorded at the observatory with no changes made.
-  2. Some edits have been made such as gap filling and spike removal and a preliminary baseline added.
-  3. The data is at the level required for production of an initial bulletin or for quasi-definitive publication.
-  4. The data has been finalised and no further changes are intended.
+<!-- HTML is neccessary because the default rendering of a numbered list uses *roman* numerals -->
+<ol type=1 start=1>
+  <li>The data is unprocessed and as recorded at the observatory with no changes made.</li>
+  <li>Some edits have been made such as gap filling and spike removal and a preliminary baseline added.</li>
+  <li>The data is at the level required for production of an initial bulletin or for quasi-definitive publication.</li>
+  <li>The data has been finalised and no further changes are intended.</li>
+</ol>
 
 ### Examples ###
 
@@ -84,7 +86,7 @@ The Edinburgh GIN uses rules when ingesting individual geomagnetic data samples 
 database. These rules allow modification of geomagnetic data (a more recent submission of 
 data at a particular publication level will overwrite previous data values at the same
 publication level), but prevent overwriting of valid data samples with missing data values 
-(i.e. individual data samples can't be deleted).
+(individual data samples can't be deleted).
 
 One of the issues affecting the decision on what QoS level to use is whether the
 underlying application receiving the data from MQTT can tolerate ingestion of duplicate 
@@ -95,7 +97,8 @@ for version 2, the version 1 data will overwrite the version 2 data. This scenar
 
 The Edinburgh GIN will subscribe to the MQTT broker with a QoS of 2. IMOs and GINs
 are recommended to publish with a QoS of 1, which reduces the overhead needed to manage
-the message stream. However, if the the scenario outlined above is thought to be an issue,
+the message stream (since the lower of the two QoS levels is used between publisher and
+subsriber). However, if the the scenario outlined above is thought to be an issue,
 IMOs and GINs can publish using a QoS of 2, which guarantees that the order of messages 
 will be maintained between publisher and subscriber (for messages published with a QoS of 2).
 
@@ -108,15 +111,16 @@ subscribe to the MQTT broker with a
 
 ### Authentication and authorization ###
 
-Each IMO or GIN will be assigned a number of authentication items that will be needed to publish data
+Each IMO or GIN will be assigned connection details that will be needed to publish data
 on the Intermagnet MQTT service:
 
 - A username. The username will be unique to the IMO or GIN and should not be shared.
 - A password. The password is linked to the username.
-- One or more client IDs. Client IDs consist of IAGA observatory codes and define which
-  observatory topics a client can publish to. If an IMO or GIN has more than one client
-  ID, it can only connect and publish using a single ID at a time - multiple connections
-  to the MQTT broker are needed to publish data from multiple observatories.
+- One or more client IDs. Client IDs consist of IAGA observatory codes and are used at the
+  Intermagnet MQTT service to define which observatory topics a client can publish to. If 
+  an IMO or GIN has more than one client ID, it can only connect and publish using a single 
+  ID at a time - multiple connections to the MQTT broker are needed to publish data from 
+  multiple observatories.
 
 A client will also be allowed to subscribe to the topics that it can publish to.
 
@@ -133,7 +137,7 @@ that the default port (8883) will be used for MQTT over TLS.
 
 ### ACLs and topics ###
 
-Internally the authorization mechanisms will be managed using an Mosquitto Access Control List (ACL).
+Internally the authorization mechanisms will be managed using a Mosquitto Access Control List (ACL).
 This is achieved with an entry similar to this in the ACL file to allow publication and subscription
 to topics matching the client's ID:
 
@@ -142,7 +146,7 @@ pattern readwrite %c/#
 ```
 
 Where the initial "%c" is used to match the Client ID to the first portion of the topic (which
-contains IAGA codes).
+consists of IAGA codes).
 
 ### Notes for clients ###
 
@@ -155,10 +159,11 @@ any published messages are received through the subscription.
 ## MQTT payload format ##
 
 The Intermagnet MQTT JSON format is designed to allow GINs and IMOs to deliver
-real-time data to the Intermagnet data portal using the Edinburgh GIN's MQTT
-receiver. JSON data segments in the Intermagnet format form the payload of MQTT
+real-time data to the Intermagnet data portal using Intermagnet's MQTT
+service. JSON data segments in this format form the payload of MQTT
 messages. The precise format of the Json data segments is constrained by the 
-[JSON schema for the format](ImagMQTTSchema.json).
+[JSON schema for the format](ImagMQTTSchema.json). MQTT payloads must consist
+of JSON documents conforming to the schema and no other content.
 
 The JSON schema consists of three sections:
 
@@ -172,20 +177,22 @@ JSON data message:
 1. "iagaCode": The observatory's IAGA code.
 2. "elementsRecorded": A list of geomagnetic field elements recorded in the data,
    1 character per element. Valid values are constrained by a list, which can
-   be seen in the schema definition.
+   be seen in the [schema definition](ImagMQTTSchema.json).
 3. "startDate": The date and time of the first data sample, in ISO8601 format. The
-   string is truncated to th appropriate precision for the data cadence (ie. all
+   string is truncated to the appropriate precision for the data cadence (ie. all
    fields except milli-seconds for 1-second data, all fields except seconds and
    milli-seconds for 1-minute data).
 4. "cadence": The sample period for the data as an ISO8601 duration. Since the
    Edinburgh GIN only accepts 1-second and 1-minute data, the only valid cadences
    are "pt1s" and "pt1m".
 5. "publicationLevel": A number indicating the level of processing applied to the data:
-
-   1. The data is unprocessed and as recorded at the observatory with no changes made.
-   2. Some edits have been made such as gap filling and spike removal and a preliminary baseline added.
-   3. The data is at the level required for production of an initial bulletin or for quasi-definitive publication.
-   4. The data has been finalised and no further changes are intended.
+<!-- HTML is neccessary because the default rendering of a numbered list uses *roman* numerals -->
+<ol type=1 start=1>
+  <li>The data is unprocessed and as recorded at the observatory with no changes made.</li>
+  <li>Some edits have been made such as gap filling and spike removal and a preliminary baseline added.</li>
+  <li>The data is at the level required for production of an initial bulletin or for quasi-definitive publication.</li>
+  <li>The data has been finalised and no further changes are intended.</li>
+</ol>
 
 The mandatory geomagnetic field data consists of either 3 or 4 arrays. The arrays must all be
 the same length. Valid arrays are:
@@ -203,9 +210,9 @@ The arrays present in the JSON data message must correspond to the "elementsReco
 
 The optional extra metadata may be completely missing, or any part of parts may be included.
 The purpose of this metadata is to allow the data provider to supply metadata values that the Intermagnet
-data portal will use when constructing IMF, IAGA-2002 and ImagCDF data files. The data portal
+data portal will use when creating IMF, IAGA-2002 and ImagCDF data files for users. The data portal
 stores a metadata file for each day and publication level of data. Thus it is only neccessary
-for a data provider to send one message per day / publication level containing the optional metadata that
+for a data provider to send one message per day / publication level, containing the optional metadata that
 they require to be distributed with their data. Subsquent messages for the same day / publication level
 do not require any optional medata. If data provider's follow this advice, it is best
 to provide the optional metadata along with the first data of the day, to ensure that data and
@@ -215,7 +222,7 @@ If the optional metadata is not supplied, default values will be used by the por
 metadata that the Edinburgh GIN holds)).
 
 The following optional metadata fields are available - the names in brackets after each of the
-fields describes which data distribution format(s) the field is used in:
+fields describes which data distribution format(s) the metadata field is used in:
 
 - "ginCode": (IMF)
 - "decbas": (IMF)
@@ -247,8 +254,9 @@ https://json-schema.org/learn/getting-started-step-by-step. The Schema for
 Intermagnet MQTT JSON is [here](ImagMQTTSchema.json).
 
 An example JSON data file is [here](ImagMQTTExample1.json). This is an example
-of a minimum viable data file - a single 3-component sample with mandatory
-metadata. An expanded example [here](ImagMQTTExample2.json) shows how to
-add "comment" metadata, to set the "comments" section when the data is
-distributed in IAGA-2002 format.
+of a minimum viable data file for 1-minute data. A single 3-component sample is
+presented along with mandatory metadata. An expanded example [here](ImagMQTTExample2.json) 
+shows how to add "comment" metadata, to set the "comments" section when the data is
+distributed in IAGA-2002 format. This example also shows how the startDate should be
+modified for 1-second data.
 

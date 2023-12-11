@@ -2,7 +2,7 @@
     "iagaCode": "ESK",
     "elementsRecorded": "XYZS",
     "startDate": "2023-01-01T00:00:00",
-    "cadence": "pt1m",
+    "cadence": "pt1s",
     "publicationLevel": 2,
     
     "comments": [ "This data file was created using INTERMAGNET data",
