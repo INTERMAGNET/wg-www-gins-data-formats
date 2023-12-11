@@ -118,11 +118,9 @@ on the Intermagnet MQTT service:
 
 - A username. The username will be unique to the IMO or GIN and should not be shared.
 - A password. The password is linked to the username.
-- One or more client IDs. Client IDs consist of IAGA observatory codes and are used at the
-  Intermagnet MQTT service to define which observatory topics a client can publish to. If 
-  an IMO or GIN has more than one client ID, it can only connect and publish using a single 
-  ID at a time - multiple connections to the MQTT broker are needed to publish data from 
-  multiple observatories.
+
+The username given to each IMO or GIN will define which topics (and so which observatories)
+the IMO of GIN can publish data to.
 
 A client will also be allowed to subscribe to the topics that it can publish to.
 
@@ -140,15 +138,9 @@ that the default port (8883) will be used for MQTT over TLS.
 ### ACLs and topics ###
 
 Internally the authorization mechanisms will be managed using a Mosquitto Access Control List (ACL).
-This is achieved with an entry similar to this in the ACL file to allow publication and subscription
-to topics matching the client's ID:
-
-```
-pattern readwrite %c/#
-```
-
-Where the initial "%c" is used to match the Client ID to the first portion of the topic (which
-consists of IAGA codes).
+This file defines which topics a user is allowed to publish and subscribe to. Since topic names
+start with the observatory IAGA-code, this list will provide a clear description of which users
+are allowed to publish data for an observatory.
 
 ### Notes for clients ###
 
