@@ -1,4 +1,7 @@
-# Intermagnet MQTT service #
+# Draft Intermagnet MQTT service description #
+
+NOTE: This document is a draft and is presented for comments.
+
 
 ## Introduction ##
 
