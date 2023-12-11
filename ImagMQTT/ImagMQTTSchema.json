@@ -1,0 +1,218 @@
+{
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    
+    "$id": "https://intermagnet.org/mqtt_exchange.schema.json",
+    "title": "Intermagnet MQTT Exchange Format",
+    "description": "A format for exchanging geomagnetic data in Intermagnet using MQTT",
+    "type": "object",
+  
+    "properties": {
+        "iagaCode": {
+            "type": "string",
+            "minLength": 3,
+            "maxLength": 3,
+            "description": "The observatory's IAGA code" 
+        },
+        "elementsRecorded": {
+            "type": "string",
+            "enum": [ "XYZ", "XYZS", "HDZ", "HDZS", "DIF", "DIFS" ],
+            "description": "Listing of geomagnetic field elements recorded in this data (1 character per element)" 
+        },
+        "startDate": {
+            "type": "string",
+            "format": "datetime",
+            "description": "Date and time of the first data sample, in ISO8601 format, to appropriate precision for the data cadence" 
+        },
+        "cadence": {
+            "type": "string",
+            "enum": [ "pt1s", "pt1m" ],
+            "description": "The sample period for the data as an ISO8601 duration"
+        },
+        "publicationLevel": {
+            "type": "integer",
+            "minValue": 1,
+            "maxValue": 2,
+            "description": "The sample period for the data as an ISO8601 duration"
+        },
+      
+        "ginCode": {
+            "type": "string",
+            "enum": [ "edi", "gol", "kyo", "ott", "par" ],
+            "description": "Optional: Code for the GIN that this observatory reports to" 
+        },
+        "decbas": {
+            "type": "integer",
+            "minimum": -10800,
+            "maximum": 21600,
+            "description": "Optional: DECBAS (declination baseline) field from IMF format" 
+        },
+        "latitude": {
+            "type": "number",
+            "minimum": -90.0,
+            "maximum": 90.0,
+            "description": "Optional: Observatory location: latitude" 
+        },
+        "longitude": {
+            "type": "number",
+            "minimum": -180.0,
+            "maximum": 360.0,
+            "description": "Optional: Observatory location: east longitude"
+        },
+        "elevation": {
+            "type": "number",
+            "minimum": -10000.0,
+            "maximum": 10000.0,
+            "description": "Optional: Observatory location: elevation in metres"
+        },
+        "institute": {
+            "type": "string",
+            "description": "Optional: Institute that the observatory belongs to"
+        },
+        "name": {
+            "type": "string",
+            "description": "Optional: Name of the observatory"
+        },
+        "sensorOrientation": {
+            "type": "string",
+            "description": "Optional: Orientation of the vector magnetic field sensor"
+        },
+        "digitalSampling": {
+            "type": "string",
+            "description": "Optional: Rate (in seconds) of the data sampling of the vector magnetic field sensor"
+        },
+        "dataIntervalType": {
+            "type": "string",
+            "description": "Optional: Mean or instantaneous time interval of the data"
+        },
+        "publicationDate": {
+            "type": "string",
+            "format": "date",
+            "description": "Optional: Date of publication of the data, in ISO8601 format, date only (no time)" 
+        },
+        "standardLevel": {
+            "type": "string",
+            "enum": [ "None", "Partial", "Full" ],
+            "description": "Optional: Describe whether the data conforms to a standard"
+        },
+        "standardName": {
+            "type": "string",
+            "enum": [ "INTERMAGNET_1-Second", "INTERMAGNET_1-Minute", "INTERMAGNET_1-Minute_QD" ],
+            "description": "Optional: The name of the standard this data conforms to (if any)" 
+        },
+        "standardVersion": {
+            "type": "string",
+            "description": "Optional: The version of the standard this data conforms to (if any)" 
+        },
+        "partialStandDesc": {
+            "type": "string",
+            "enum": [ "IMOM-01", "IMOM-11", "IMOM-12", "IMOM-14", "IMOM-15", "IMOM-16", "IMOM-17",
+                      "IMOM-18", "IMOM-21", "IMOM-22", "IMOM-23", "IMOS-01", "IMOS-02", "IMOS-03",
+                      "IMOS-04", "IMOS-05", "IMOS-06", "IMOS-13", "IMOS-14", "IMOS-15", "IMOS-21",
+                      "IMOS-22", "IMOS-31", "IMOS-41", "IMOS-42" ],
+            "description": "Optional: The parts of the standard this data conforms to (if any), for use when the standard level is partial" 
+        },
+        "source": {
+            "type": "string",
+            "enum": [ "Institute", "Intermagnet", "WDC" ],
+            "description": "Optional: Where the data came from" 
+        },
+        "termsOfUse": {
+            "type": "string",
+            "description": "Optional: The terms of use for the data" 
+        },
+        "uniqueIdentifier": {
+            "type": "string",
+            "description": "Optional: A string that can be used to uniquely identify this data, e.g. a DOI" 
+        },
+        "parentIdentifiers": {
+            "type": "array",
+            "items": { "type": "string" },
+            "description": "Optional: The unique identifer(s) of the parent data set" 
+        },
+        "referenceLinks": {
+            "type": "array",
+            "items": { "type": "string" },
+            "description": "Optional: URLs pointing to information about the data, one URL per element" 
+        },
+        "comments": {
+            "type": "array",
+            "items": { "type": "string" },
+            "description": "Optional: Use these to record important information not contained in the defined fields" 
+        },
+      
+        "geomagneticFieldX": {
+            "type": "array",
+            "items": { "type": "number" },
+            "minimum": -99999.0,
+            "maximum": 99999.0,
+            "description": "Magnetic field vector strength in nT, x component, geographic coordinates" 
+        },
+        "geomagneticFieldY": {
+            "type": "array",
+            "items": { "type": "number" },
+            "minimum": -99999.0,
+            "maximum": 99999.0,
+            "description": "Magnetic field vector strength in nT, y component, geographic coordinates" 
+        },
+        "geomagneticFieldZ": {
+            "type": "array",
+            "items": { "type": "number" },
+            "minimum": -99999.0,
+            "maximum": 99999.0,
+            "description": "Magnetic field vector strength in nT, z component, geographic coordinates" 
+        },
+        "geomagneticFieldH": {
+            "type": "array",
+            "items": { "type": "number" },
+            "minimum": -99999.0,
+            "maximum": 99999.0,
+            "description": "Magnetic field vector strength in nT, in the horizontal plane along the magnetic meridian" 
+        },
+        "geomagneticFieldD": {
+            "type": "array",
+            "items": { "type": "number" },
+            "minimum": -180.0,
+            "maximum": 99999.0,
+            "description": "Angle between the magnetic vector and true north, in degrees of arc, positive east" 
+        },
+        "geomagneticFieldI": {
+            "type": "array",
+            "items": { "type": "number" },
+            "minimum": -180.0,
+            "maximum": 99999.0,
+            "description": "Angle between the magnetic vector and the horizontal, in degrees of arc, positive below the horizontal" 
+        },
+        "geomagneticFieldF": {
+            "type": "array",
+            "items": { "type": "number" },
+            "minimum": 0.0,
+            "maximum": 99999.0,
+            "description": "Geomagnetic field strength in nT, calculated from and consistent with XYZ or HDZ field elements" 
+        },
+        "geomagneticFieldS": {
+            "type": "array",
+            "items": { "type": "number" },
+            "minimum": 0.0,
+            "maximum": 99999.0,
+            "description": "Geomagnetic field strength in nT, measured by an independent scalar instrument" 
+        }
+    },
+    
+    "allOf": [
+        { "required": [ "iagaCode", "elementsRecorded", "startDate", "cadence", "publicationLevel" ] },
+        { 
+            "anyOf": [
+                { "required": [ "geomagneticFieldX", "geomagneticFieldY", "geomagneticFieldZ" ] },
+                { "required": [ "geomagneticFieldX", "geomagneticFieldY", "geomagneticFieldZ", "geomagneticFieldS" ] },
+                { "required": [ "geomagneticFieldH", "geomagneticFieldD", "geomagneticFieldZ" ] },
+                { "required": [ "geomagneticFieldH", "geomagneticFieldD", "geomagneticFieldZ", "geomagneticFieldS" ] },
+                { "required": [ "geomagneticFieldD", "geomagneticFieldI", "geomagneticFieldF" ] },
+                { "required": [ "geomagneticFieldD", "geomagneticFieldI", "geomagneticFieldF", "geomagneticFieldS" ] }
+            ],
+            "minLength": 3,
+            "maxLength": 4
+        }
+    ],
+    "additionalProperties": false
+}
+  
