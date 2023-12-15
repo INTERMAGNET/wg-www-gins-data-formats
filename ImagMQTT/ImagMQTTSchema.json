@@ -105,11 +105,7 @@
         },
         "partialStandDesc": {
             "type": "string",
-            "enum": [ "IMOM-01", "IMOM-11", "IMOM-12", "IMOM-14", "IMOM-15", "IMOM-16", "IMOM-17",
-                      "IMOM-18", "IMOM-21", "IMOM-22", "IMOM-23", "IMOS-01", "IMOS-02", "IMOS-03",
-                      "IMOS-04", "IMOS-05", "IMOS-06", "IMOS-13", "IMOS-14", "IMOS-15", "IMOS-21",
-                      "IMOS-22", "IMOS-31", "IMOS-41", "IMOS-42" ],
-            "description": "Optional: The parts of the standard this data conforms to (if any), for use when the standard level is partial" 
+            "description": "Optional: A comma separated list describing the parts of the standard this data conforms to (if any), for use when the standard level is partial" 
         },
         "source": {
             "type": "string",
