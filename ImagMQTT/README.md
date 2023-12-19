@@ -187,7 +187,7 @@ JSON data message:
   - 4 = The data has been finalised and no further changes are intended.
 
 The mandatory geomagnetic field data consists of either 3 or 4 arrays. The arrays must all be
-the same length. Valid arrays are:
+the same length and contain only numbers or the value "null" to indicate a missing sample. Valid arrays are:
 
 - "geomagneticFieldX": Magnetic field vector strength in nT, x component, geographic coordinates.
 - "geomagneticFieldY": Magnetic field vector strength in nT, y component, geographic coordinates.
