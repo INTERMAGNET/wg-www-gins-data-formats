@@ -1,9 +1,6 @@
 {
-    "iagaCode": "ESK",
     "elementsRecorded": "XYZS",
     "startDate": "2023-01-01T00:00:00",
-    "cadence": "pt1s",
-    "publicationLevel": 2,
     
     "comments": [ "This data file was created using INTERMAGNET data",
                   "from the Edinburgh GIN. These data were acquired",
@@ -14,9 +11,6 @@
                   "through INTERMAGNET and acknowledgement templates can be found",
                   "at www.intermagnet.org" ],
   
-    
-    "geomagneticFieldX": [ 17595.02 ],
-    "geomagneticFieldY": [ -329.19 ],
-    "geomagneticFieldZ": [ 46702.70 ]
+    "geomagneticFieldS": [ 49000.00 ]
 }
   

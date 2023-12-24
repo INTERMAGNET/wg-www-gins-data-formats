@@ -165,29 +165,29 @@ The JSON schema consists of three sections:
 2. Mandatory geomagnetic field data
 3. Optional extra metadata
 
-The mandatory metadata consists of 5 fields, all of which must be present in every
+The mandatory metadata consists of 2 fields, all of which must be present in every
 JSON data message:
 
-1. "iagaCode": The observatory's IAGA code.
-2. "elementsRecorded": A list of geomagnetic field elements recorded in the data,
+1. "elementsRecorded": A list of geomagnetic field elements recorded in the data,
    1 character per element. Valid values are constrained by a list, which can
    be seen in the [schema definition](ImagMQTTSchema.json).
-3. "startDate": The date and time of the first data sample, in ISO8601 format. The
+2. "startDate": The date and time of the first data sample, in ISO8601 format. The
    string is truncated to the appropriate precision for the data cadence (ie. all
    fields except milli-seconds for 1-second data, all fields except seconds and
    milli-seconds for 1-minute data).
-4. "cadence": The sample period for the data as an ISO8601 duration. Since the
-   Edinburgh GIN only accepts 1-second and 1-minute data, the only valid cadences
-   are "pt1s" and "pt1m".
-5. "publicationLevel": A number indicating the level of processing applied to the data:
 
-  - 1 = The data is unprocessed and as recorded at the observatory with no changes made.
-  - 2 = Some edits have been made such as gap filling and spike removal and a preliminary baseline added.
-  - 3 = The data is at the level required for production of an initial bulletin or for quasi-definitive publication.
-  - 4 = The data has been finalised and no further changes are intended.
+The topic used to publish data to the MQTT broker includes 3 further pieces of metadata
+(IAGA code, cadence, publication level) that are also used to describe the data being
+transmitted.
 
-The mandatory geomagnetic field data consists of either 3 or 4 arrays. The arrays must all be
-the same length and contain only numbers or the value "null" to indicate a missing sample. Valid arrays are:
+The mandatory geomagnetic field data consists of anything between 1 and 4 arrays 
+corresponding to the elements recorded. Individual elements of the geomagnetic 
+field may be sent together in a message or in separate messages, so that, for 
+example, data from a vector instrument and a separate scalar instrument do not 
+need to be combined into a single message to be sent. An entirely missing scalar 
+element does not need to be sent at all. The arrays sent in a single message must 
+all be the same length and contain only numbers or the value "null" to indicate a 
+missing sample. Valid arrays are:
 
 - "geomagneticFieldX": Magnetic field vector strength in nT, x component, geographic coordinates.
 - "geomagneticFieldY": Magnetic field vector strength in nT, y component, geographic coordinates.
@@ -198,7 +198,7 @@ the same length and contain only numbers or the value "null" to indicate a missi
 - "geomagneticFieldF": Geomagnetic field strength in nT, calculated from and consistent with XYZ or HDZ field elements.
 - "geomagneticFieldS": Geomagnetic field strength in nT, measured by an independent scalar instrument.
 
-The arrays present in the JSON data message must correspond to the "elementsRecorded" metadata field.
+Only arrays corresponding with the "elementsRecorded" metadata field may be used.
 
 The optional extra metadata may be completely missing, or any part of parts may be included.
 The purpose of this metadata is to allow the data provider to supply metadata values that the Intermagnet

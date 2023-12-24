@@ -7,32 +7,15 @@
     "type": "object",
   
     "properties": {
-        "iagaCode": {
-            "type": "string",
-            "minLength": 3,
-            "maxLength": 3,
-            "description": "The observatory's IAGA code" 
-        },
         "elementsRecorded": {
             "type": "string",
-            "enum": [ "XYZ", "XYZS", "HDZ", "HDZS", "DIF", "DIFS" ],
-            "description": "Listing of geomagnetic field elements recorded in this data (1 character per element)" 
+            "enum": [ "XYZS", "HDZS", "DIFS" ],
+            "description": "List of geomagnetic field elements recorded at the observatory (1 character per element)" 
         },
         "startDate": {
             "type": "string",
             "format": "datetime",
             "description": "Date and time of the first data sample, in ISO8601 format, to appropriate precision for the data cadence" 
-        },
-        "cadence": {
-            "type": "string",
-            "enum": [ "pt1s", "pt1m" ],
-            "description": "The sample period for the data as an ISO8601 duration"
-        },
-        "publicationLevel": {
-            "type": "integer",
-            "minValue": 1,
-            "maxValue": 2,
-            "description": "The sample period for the data as an ISO8601 duration"
         },
       
         "ginCode": {
@@ -195,18 +178,51 @@
     },
     
     "allOf": [
-        { "required": [ "iagaCode", "elementsRecorded", "startDate", "cadence", "publicationLevel" ] },
-        { 
-            "anyOf": [
-                { "required": [ "geomagneticFieldX", "geomagneticFieldY", "geomagneticFieldZ" ] },
-                { "required": [ "geomagneticFieldX", "geomagneticFieldY", "geomagneticFieldZ", "geomagneticFieldS" ] },
-                { "required": [ "geomagneticFieldH", "geomagneticFieldD", "geomagneticFieldZ" ] },
-                { "required": [ "geomagneticFieldH", "geomagneticFieldD", "geomagneticFieldZ", "geomagneticFieldS" ] },
-                { "required": [ "geomagneticFieldD", "geomagneticFieldI", "geomagneticFieldF" ] },
-                { "required": [ "geomagneticFieldD", "geomagneticFieldI", "geomagneticFieldF", "geomagneticFieldS" ] }
-            ],
-            "minLength": 3,
-            "maxLength": 4
+        { "required": [ "elementsRecorded", "startDate" ] },
+        { "oneOf": 
+            [
+                { "allOf": [ { "required": [ "geomagneticFieldX", "geomagneticFieldY", "geomagneticFieldZ", "geomagneticFieldS" ] },
+                             { "not": { "required": [ "geomagneticFieldH" ] } },
+                             { "not": { "required": [ "geomagneticFieldD" ] } },
+                             { "not": { "required": [ "geomagneticFieldI" ] } }
+                ] },
+                { "allOf": [ { "required": [ "geomagneticFieldX", "geomagneticFieldY", "geomagneticFieldZ" ] },
+                             { "not": { "required": [ "geomagneticFieldH" ] } },
+                             { "not": { "required": [ "geomagneticFieldD" ] } },
+                             { "not": { "required": [ "geomagneticFieldI" ] } },
+                             { "not": { "required": [ "geomagneticFieldS" ] } }
+                ] },
+                { "allOf": [ { "required": [ "geomagneticFieldH", "geomagneticFieldD", "geomagneticFieldZ", "geomagneticFieldS" ] },
+                             { "not": { "required": [ "geomagneticFieldX" ] } },
+                             { "not": { "required": [ "geomagneticFieldY" ] } },
+                             { "not": { "required": [ "geomagneticFieldI" ] } }
+                ] },
+                { "allOf": [ { "required": [ "geomagneticFieldH", "geomagneticFieldD", "geomagneticFieldZ" ] },
+                             { "not": { "required": [ "geomagneticFieldX" ] } },
+                             { "not": { "required": [ "geomagneticFieldY" ] } },
+                             { "not": { "required": [ "geomagneticFieldI" ] } },
+                             { "not": { "required": [ "geomagneticFieldS" ] } }
+                ] },
+                { "allOf": [ { "required": [ "geomagneticFieldD", "geomagneticFieldI", "geomagneticFieldF", "geomagneticFieldS" ] },
+                             { "not": { "required": [ "geomagneticFieldX" ] } },
+                             { "not": { "required": [ "geomagneticFieldY" ] } },
+                             { "not": { "required": [ "geomagneticFieldH" ] } }
+                ] },
+                { "allOf": [ { "required": [ "geomagneticFieldD", "geomagneticFieldI", "geomagneticFieldF" ] },
+                             { "not": { "required": [ "geomagneticFieldX" ] } },
+                             { "not": { "required": [ "geomagneticFieldY" ] } },
+                             { "not": { "required": [ "geomagneticFieldH" ] } },
+                             { "not": { "required": [ "geomagneticFieldS" ] } }
+                ] },
+                { "allOf": [ { "required": [ "geomagneticFieldS" ] },
+                             { "not": { "required": [ "geomagneticFieldX" ] } },
+                             { "not": { "required": [ "geomagneticFieldY" ] } },
+                             { "not": { "required": [ "geomagneticFieldZ" ] } },
+                             { "not": { "required": [ "geomagneticFieldH" ] } },
+                             { "not": { "required": [ "geomagneticFieldD" ] } },
+                             { "not": { "required": [ "geomagneticFieldI" ] } }
+                ] }
+            ]
         }
     ],
     "additionalProperties": false

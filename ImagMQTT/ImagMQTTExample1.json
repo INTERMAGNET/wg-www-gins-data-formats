@@ -1,9 +1,6 @@
 {
-    "iagaCode": "ESK",
     "elementsRecorded": "XYZS",
     "startDate": "2023-01-01T00:00",
-    "cadence": "pt1m",
-    "publicationLevel": 2,
     
     "geomagneticFieldX": [ 17595.02 ],
     "geomagneticFieldY": [ -329.19 ],
