@@ -68,6 +68,9 @@ Where:
   - 3 = The data is at the level required for production of an initial bulletin or for quasi-definitive publication.
   - 4 = The data has been finalised and no further changes are intended.
 
+  Note that topics are case-sensitive. All topic values for the Intermagnet MQTT service
+  must be in lower case.
+
 ### Examples ###
 
 The topic for Eskdalemuir observatory's 1-minute "reported" data (straight from the observatory with no processing)
@@ -98,7 +101,7 @@ publication level), but prevent overwriting of valid data samples with missing d
 One of the issues affecting the decision on what QoS level to use is whether the
 underlying application receiving the data from MQTT can tolerate ingestion of duplicate 
 messages. Delivering a duplicate message to the Edinburgh GIN will not cause any problems. 
-However, if an IMO were to deliver two versions of the same data (at the same publication 
+However, if an IMO or GIN were to deliver two versions of the same data (at the same publication 
 level), and the messages for version 1 were to be delayed and arrive after the messages 
 for version 2, the version 1 data will overwrite the version 2 data. This scenario is unlikely.
 
@@ -116,18 +119,39 @@ subscribe to the MQTT broker with a
 
 ## Security ##
 
+### Importance of the MQTT Client ID ###
+
+In MQTT, publication and subscription is associated with the subscriber's and publisher's client ID,
+not the username. Only one client ID may be connected to an MQTT broker at at time. If a duplicate
+client ID attempts to connect to a broker, the broker will disconnect the earlier connection. For these
+reasons it is important that client IDs are selected so that there can never be any duplicate IDs.
+
+The MQTT broker allows the username (used in authenticating with the broker) to be used as the
+client ID. The only way to enforce unique client IDs is to allocate unique usernames to each
+client (ie each observatory) and force clients to use the username as their client ID. This is
+the approach used by the Intermagnet MQTT service.
+
 ### Authentication and authorization ###
 
-Each IMO or GIN will be assigned connection details that will be needed to publish data
-on the Intermagnet MQTT service:
+Each IMO or GIN wishing to send data will be assigned connection details that will be 
+needed to publish data on the Intermagnet MQTT service:
 
-- A username. The username will be unique to the IMO or GIN and should not be shared.
-- A password. The password is linked to the username.
+- A publication username. The username will be unique to the IMO or GIN and should not be shared.
+  This username is used for publishing data.
+- A publication password. The publication password is linked to the publication username.
+- A subscription username. The username will be unique to the IMO or GIN and should not be shared.
+  This username is used for subscribing to data, to allow an IMO or GIN to check that its
+  data is being received.
+- A subscription password. The subscription password is linked to the subscription username.
 
-The username given to each IMO or GIN will define which topics (and so which observatories)
-the IMO of GIN can publish data to.
+The usernames given to each IMO or GIN will define which topics (and so which observatories)
+they can publish and subscribe to.
 
-A client will also be allowed to subscribe to the topics that it can publish to.
+An IMO or GIN will be allowed to subscribe to the topics that it can publish to. Because
+the client ID (specified by the username) can only connect once to a broker, it is
+not possible to use one username to publish and subscribe at the same time. The username 
+assigned for publication must be used only for publishing. A second username and password 
+allows subscription at the same time as publication.
 
 ### Secure transport ###
 
@@ -191,8 +215,8 @@ field may be sent together in a message or in separate messages, so that, for
 example, data from a vector instrument and a separate scalar instrument do not 
 need to be combined into a single message to be sent. An entirely missing scalar 
 element does not need to be sent at all. The arrays sent in a single message must 
-all be the same length and contain only numbers or the value "null" to indicate a 
-missing sample. Valid arrays are:
+all be the same length and contain only numbers or the value "null", which is used
+to indicate a missing sample. Valid arrays are:
 
 - "geomagneticFieldX": Magnetic field vector strength in nT, x component, geographic coordinates.
 - "geomagneticFieldY": Magnetic field vector strength in nT, y component, geographic coordinates.

@@ -2,7 +2,7 @@
     "elementsRecorded": "XYZS",
     "startDate": "2023-01-01T00:00",
     
-    "geomagneticFieldX": [ 17595.02 ],
-    "geomagneticFieldY": [ -329.19 ],
-    "geomagneticFieldZ": [ 46702.70 ]
+    "geomagneticFieldX": [ 17595.02, null, 17594.99 ],
+    "geomagneticFieldY": [ -329.19, -329.18, -329.21 ],
+    "geomagneticFieldZ": [ 46702.70, 46703.01, 46703.24 ]
 }
