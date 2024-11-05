@@ -28,9 +28,13 @@
    - [ ] Sopron 2023 GWD.A6, Not started: David Boteler (with help from SF)
      To take on renewal of the Memorandum of Understanding with the World Data System.
 2. Use of MQTT for faster transport of data from observatories
-   - Test with DOU and MAB minute data (main transmission), also BEL second data (test transmission)
+   - Report on test with DOU and MAB minute data (main transmission), also BEL second data (test transmission)
    - Support at French and Japanese GINs
+   - Recommendations for the future
 3. Use of Seedlink for inter-GIN data transport (Canada, US)
-   - Test with BLC and MEA minute and second data
-4. Removal of Rsync for inter-GIN data transport (France, Japan)
+   - Report on test with BLC and MEA minute and second data (test trasnmission)
+   - Recommendations for the future
+4. Removal of Rsync for inter-GIN data transport (Canada, France, Japan, US)
 5. Review of issues on WWW-GIN-DF GitLab: https://github.com/INTERMAGNET/wg-www-gins-data-formats/issues
+
+A full description of agenda items 2 to 4 is in https://github.com/INTERMAGNET/wg-www-gins-data-formats/issues/14
