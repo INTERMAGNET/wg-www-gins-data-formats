@@ -35,6 +35,7 @@
    - Report on test with BLC and MEA minute and second data (test trasnmission)
    - Recommendations for the future
 4. Removal of Rsync for inter-GIN data transport (Canada, France, Japan, US)
-5. Review of issues on WWW-GIN-DF GitLab: https://github.com/INTERMAGNET/wg-www-gins-data-formats/issues
+5. Impact of including data without baselines on Intermagnet systems https://github.com/INTERMAGNET/wg-www-gins-data-formats/issues/16
+6. Review of issues on WWW-GIN-DF GitLab: https://github.com/INTERMAGNET/wg-www-gins-data-formats/issues
 
 A full description of agenda items 2 to 4 is in https://github.com/INTERMAGNET/wg-www-gins-data-formats/issues/14
