@@ -1,4 +1,4 @@
-Proposed workflow for INTERMAGNET WWW/Gins/Data Format Working Group discussions.
+Workflow for INTERMAGNET WWW/Gins/Data Format Working Group discussions.
 
 1. To start discussion on a new topic, create an issue in the committee's Github project (https://github.com/INTERMAGNET/wg-www-gins-data-formats/issues) or, if
 not a member of the committee, ask a committee member to create an issue (the first method is preferable easier tracking and contribution). If the issue/item is of a private matter, it is placed in a private repository where committee members are given access.
