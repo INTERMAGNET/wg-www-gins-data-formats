@@ -19,23 +19,21 @@
 
 - [ ] Online 2020 GWD.A9, Ongoing: SF, JF 	
   - Discussion to continue on the future of a web friendly format (JSON) for distributing data. Initial proposal of CovJSON needs a few adjustments. https://github.com/INTERMAGNET/wg-www-gins-data-formats/issues/7
-  - ONGOING
 
-- [ ] Online 2020, Ongoing: GWD.A10 CB, GWD
+- [x] Online 2020, Done: GWD.A10 CB, GWD
   - Start a guideline for doing technical notes in markdown on GitHub https://github.com/INTERMAGNET/wg-www-gins-data-formats/issues/2
- - ACTION: Mail to Charles suggesting it's completed
 
 - [ ] Online 2020 GWD.A12, Not started: SF
   - Correct CDF files for leap second wg-www-gins-data-formats/issues/5. Once INTERMAGNET data is transferred from NRCan to BGS, BGS will correct CDF files for leap seconds.
-  - ACTION: Request Stephan (via GitHub) to close the issue - https://github.com/INTERMAGNET/wg-www-gins-data-formats/issues/5
+  - Activity: Request Stephan (via GitHub) to close the issue - https://github.com/INTERMAGNET/wg-www-gins-data-formats/issues/5
 
 - [ ] Online 2020 GWD.A13, Not started: GWD
   - Add license information to IAGA2002 header and CDF. https://github.com/INTERMAGNET/wg-www-gins-data-formats/issues/1
-  - ACTION: Request Charles (via GitHub) to close the issue
+  - Activity: Request Charles (via GitHub) to close the issue
 
 - [ ] Online 2020 GWD.A14, Ongoing: GWD
   - Continue the discussion on flagging geomagnetic data https://github.com/INTERMAGNET/wg-www-gins-data-formats/issues/3
-  - ACTION: Request Charles, Roman and Virginie (via GitHub) to close the issue
+  - Activity: Request Charles, Roman and Virginie (via GitHub) to close the issue
 
 - [x] Sopron 2023 GWD.A1, Done: RL
   - To make available documentation on implementation of MQTT.
@@ -49,16 +47,16 @@
 - [x] Sopron 2023 GWD.A4, Done: SF (with help from BG, CB)
   - To design and implement a Seedlink receiver for the Edinburgh GIN and report on experience using it to receive INTERMAGNET data.
 
-- [ ] Sopron 2023 GWD.A5, Not started: SF, DC, RL, AL, AG, JM, JR
+- [x] Sopron 2023 GWD.A5, Moved to Definitive Data subcommittee: SF, DC, RL, AL, AG, JM, JR
   - To recommend changes to the BLV file format to support automatic observation instruments.
 
 - [ ] Sopron 2023 GWD.A6, Not started: David Boteler (with help from SF)
   - To take on renewal of the Memorandum of Understanding with the World Data System.
-  - ACTION: Mail to David, to check on progress
+  - Activity: Request David provide information on progress
 
 ## Use of MQTT for faster transport of data from observatories
 
-A full description of this and the following two topics is in https://github.com/INTERMAGNET/wg-www-gins-data-formats/issues/14
+A full description of this and the following two topics (Seedlink and Rsync) is in https://github.com/INTERMAGNET/wg-www-gins-data-formats/issues/14
 
 ### Report on MQTT transmissions
 
@@ -113,6 +111,7 @@ impf/<iaga-code>/<cadence>/<publication-level>/<elements-recorded>
 The only change to the payload is the removal of the "elementsRecorded" metadata field.
 
 **ACTION: SF to update the MQTT documentation with changes to the topic and payload.**
+**ACTION: SF to update BGS MQTT software and notify existing MQTT users of topic and payload changes.**
 
 We anticipate that incorporating support for this MQTT format into MagPy will help observatories to work with the format. We request that support is added to magPy for reading and writing MQTT payloads in the Intermagnet MQTT Payload Format. We also request that the IMPF JSON schema (https://github.com/INTERMAGNET/wg-www-gins-data-formats/blob/master/ImagMQTT/ImagMQTTSchema.json) is included in MagPy (once the planned changes have been implemented).
 
@@ -174,11 +173,12 @@ We agreed to hold regular (e.g. every 3 or 6 month) online meetings.
 
 **ACTION: SF to organise regular online meetings of the subcommittee.**
 
-## Summary of actions
+## Summary of actions for GIN subcommittee
 
 1. ACTION: SF to discuss MQTT impementation at the Kyoto GIN with SI.
 1. ACTION: VM to investigate new ways of transferring data to the Edinburgh GIN.
 1. ACTION: SF to update the MQTT documentation with changes to the topic and payload.
+1. ACTION: SF to update BGS MQTT software and notify existing MQTT users of topic and payload changes.
 1. ACTION: RL to add support for IMPF in MagPy.
 1. ACTION: SF to rationalise MQTT and Seedlink documentation
 1. ACTION: CB to investigate new ways of transferring data to the Edinburgh GIN.

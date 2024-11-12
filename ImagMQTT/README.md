@@ -49,41 +49,55 @@ each observatory). In the future it may also be useful to allow other clients (p
 to subscribe to data from the broker. For this reason it makes sense to design topics that aid filtering of
 the data sent to the broker.
 
-GINs and IMOs publishing data at the Intermagnet MQTT service muse use the topic:
+GINs and IMOs publishing data at the Intermagnet MQTT service must use the topic:
 
 ```
-<iaga-code>/<cadence>/<publication-level>
+impf/<iaga-code>/<cadence>/<publication-level>/<elements-recorded>
 ```
 
 Where:
 
+- "impf" stands for Intermagnet MQTT Payload Format and is included in the topic
+  to allow alternative topic and payload formats to be used on the same MQTT
+  brokers in the future
 - "iaga-code" is the IAGA registered code of the observatory sending data
-- "cadence" is the sample period for the data as an ISO8601 duration. Since the
+- "cadence" is the sample period for the data as an ISO8601 duration (for data
+  with sampling rate of 1Hz or below) or the sample rate with the suffix "hz" (for
+  data with sampling rate of 1Hz or above). Since the
   Edinburgh GIN only accepts 1-second and 1-minute data, the only valid cadences
-  are "pt1s" and "pt1m".
+  are "pt1s", "1hz" and "pt1m".
 - "publication-level" is a number indicating the level of processing applied to the data:
-
   - 1 = The data is unprocessed and as recorded at the observatory with no changes made.
   - 2 = Some edits have been made such as gap filling and spike removal and a preliminary baseline added.
   - 3 = The data is at the level required for production of an initial bulletin or for quasi-definitive publication.
   - 4 = The data has been finalised and no further changes are intended.
+- "elements-recorded" lists the geomagnetic elements that will be in the message and must be one of:
+  - "XYZS"
+  - "HDZS"
+  - "DIFS"
 
-  Note that topics are case-sensitive. All topic values for the Intermagnet MQTT service
-  must be in lower case.
+Note that topics are case-sensitive. All topic values for the Intermagnet MQTT service
+must be in lower case.
 
 ### Examples ###
 
-The topic for Eskdalemuir observatory's 1-minute "reported" data (straight from the observatory with no processing)
+The topic for Eskdalemuir observatory's 1-minute "reported" HDZ data (straight from the observatory with no processing)
 would be:
 
 ```
-esk/pt1m/1
+impf/esk/pt1m/1/hdz
 ```
 
-The topic for Lerwick observatory's 1-second quasi-definitive data would be:
+The topic for Lerwick observatory's 1-second quasi-definitive XYZS data would be:
 
 ```
-ler/pt1s/3
+impf/ler/pt1s/3/xyzs
+```
+
+or 
+
+```
+impf/ler/1hz/3/xyzs
 ```
 
 
@@ -194,23 +208,20 @@ The JSON schema consists of three sections:
 2. Mandatory geomagnetic field data
 3. Optional extra metadata
 
-The mandatory metadata consists of 2 fields, all of which must be present in every
+The mandatory metadata consists of a single which must be present in every
 JSON data message:
 
-1. "elementsRecorded": A list of geomagnetic field elements recorded in the data,
-   1 character per element. Valid values are constrained by a list, which can
-   be seen in the [schema definition](ImagMQTTSchema.json).
-2. "startDate": The date and time of the first data sample, in ISO8601 format. The
+1. "startDate": The date and time of the first data sample, in ISO8601 format. The
    string is truncated to the appropriate precision for the data cadence (ie. all
    fields except milli-seconds for 1-second data, all fields except seconds and
    milli-seconds for 1-minute data).
 
-The topic used to publish data to the MQTT broker includes 3 further pieces of metadata
-(IAGA code, cadence, publication level) that are also used to describe the data being
-transmitted.
+The topic used to publish data to the MQTT broker includes 4 further pieces of metadata
+(IAGA code, cadence, publication level and geomagnetic orientation) that are also used 
+to describe the data being transmitted.
 
 The mandatory geomagnetic field data consists of anything between 1 and 4 arrays 
-corresponding to the elements recorded. Individual elements of the geomagnetic 
+corresponding to the elements recorded (as described in the topic). Individual elements of the geomagnetic 
 field may be sent together in a message or in separate messages, so that, for 
 example, data from a vector instrument and a separate scalar instrument do not 
 need to be combined into a single message to be sent. An entirely missing scalar 
@@ -227,7 +238,7 @@ to indicate a missing sample. Valid arrays are:
 - "geomagneticFieldF": Geomagnetic field strength in nT, calculated from and consistent with XYZ or HDZ field elements.
 - "geomagneticFieldS": Geomagnetic field strength in nT, measured by an independent scalar instrument.
 
-Only arrays corresponding with the "elementsRecorded" metadata field may be used.
+Only arrays corresponding with the "elements-recorded" in the message topic may be used.
 
 The optional extra metadata may be completely missing, or any part of parts may be included.
 The purpose of this metadata is to allow the data provider to supply metadata values that the Intermagnet
@@ -235,7 +246,7 @@ data portal will use when creating IMF, IAGA-2002 and ImagCDF data files for use
 stores a metadata file for each day and publication level of data. Thus it is only neccessary
 for a data provider to send one message per day / publication level, containing the optional metadata that
 they require to be distributed with their data. Subsquent messages for the same day / publication level
-do not require any optional medata. If data provider's follow this advice, it is best
+do not require any optional metadata. If data provider's follow this advice, it is best
 to provide the optional metadata along with the first data of the day, to ensure that data and
 metadata are always consistent.
 
