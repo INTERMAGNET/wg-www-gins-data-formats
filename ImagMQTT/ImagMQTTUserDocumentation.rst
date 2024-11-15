@@ -155,7 +155,6 @@ The first example is a minimum viable data file for 1-minute data. A single
 3-component sample is presented along with mandatory metadata::
 
     {
-        "elementsRecorded": "XYZS",
         "startDate": "2023-01-01T00:00",
         "geomagneticFieldX": [ 17595.02, null, 17594.99 ],
         "geomagneticFieldY": [ -329.19, -329.18, -329.21 ],
@@ -168,7 +167,6 @@ section when the data is distributed in IAGA-2002 format. This example also
 shows how the startDate should be modified for 1-second data::
 
     {
-        "elementsRecorded": "XYZS",
         "startDate": "2023-01-01T00:00:00",
         "comments": [ "This data file was created using INTERMAGNET data",
                       "from the Edinburgh GIN. These data were acquired",
