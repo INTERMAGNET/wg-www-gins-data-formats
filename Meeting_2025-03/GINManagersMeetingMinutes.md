@@ -29,6 +29,10 @@ SF will contact Roman Leonhardt to find out whether MagPY can convert between th
 
 BG reported that USGS are transfering observatory data internally in miniseed format, but need to set up a public ringserver to make the data available. They are interested in MQTT, but will be using miniseed for the foreseable future.
 
+BG states that MQTT allows for more secure operations:
+ - data is pushed rather than pulled
+ - no problems with changing IP adresses
+
 CB said that all Canadian Intermagnet provisional observatory data is available from NRCan Seedlink servers. SF will set up the Seedlink receiver at the Edinburgh GIN to receive data from all these observatories and, if the transfers are successful, switch to using this as the main method of transferring data from Ottawa. This will cover provisional data, but another transfer method is needed for quasi-definitive data, which is sent "manually" rather than as part of automatic processing. SF said that quasi-definitive data could be sent via email or using the data delivery web service at the Edinburgh GIN. SF will contact David Calp at NRCan to discuss this, copying CB into the discussions.
 
 NRCan have two Seedlink servers available (for the purposes of redundancy):
