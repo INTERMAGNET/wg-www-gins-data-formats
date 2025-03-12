@@ -17,6 +17,12 @@
 3. Timetable for removal of Rsync transfers between GINs
 4. Any other business (in particular, any updates on items from the Rio meeting - https://github.com/INTERMAGNET/wg-www-gins-data-formats/blob/master/Meeting_2024-11/GINSubcommitteeMeetingMinutes.md)
 
+## Background on the choice of MQTT and Seedlink
+
+There has been considerable discussion about real-time data transfer and particularly MQTT and Seedlink usage in Intermagnet. Much of this discussion is summarised in https://github.com/INTERMAGNET/wg-www-gins-data-formats/issues/14.
+
+One area that was discussed in this meeting that is not described elsewhere is encryption of data during transfer. MQTT can use Transport Layer Security (TLS) for encryption of data being transmitted across the Internet. The Intermagnet implementation of MQTT uses TLS to encrypt data. Seedlink does not currently support encryption, but this is planned for a future release of the Seedlink protocol.
+
 ## Progress on using MQTT at Kyoto and Paris
 
 SI presented a [report from Kyoto](mqtt_report_kyoto_20250307.pdf) showing good progress and with the expectation of a working system for MQTT transfer by the end of this year.
