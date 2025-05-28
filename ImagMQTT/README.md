@@ -85,7 +85,7 @@ The topic for Eskdalemuir observatory's 1-minute "reported" HDZ data (straight f
 would be:
 
 ```
-impf/esk/pt1m/1/hdz
+impf/esk/pt1m/1/hdzs
 ```
 
 The topic for Lerwick observatory's 1-second quasi-definitive XYZS data would be:
