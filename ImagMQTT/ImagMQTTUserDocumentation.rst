@@ -96,8 +96,8 @@ to indicate a missing sample. Valid arrays are:
 - "geomagneticFieldY": Magnetic field vector strength in nT, y component, geographic coordinates.
 - "geomagneticFieldZ": Magnetic field vector strength in nT, z component, geographic coordinates.
 - "geomagneticFieldH": Magnetic field vector strength in nT, in the horizontal plane along the magnetic meridian.
-- "geomagneticFieldD": Angle between the magnetic vector and true north, in degrees of arc, positive east.
-- "geomagneticFieldI": Angle between the magnetic vector and the horizontal, in degrees of arc, positive below the horizontal.
+- "geomagneticFieldD": Angle between the magnetic vector and true north, in minutes of arc, positive east.
+- "geomagneticFieldI": Angle between the magnetic vector and the horizontal, in minutes of arc, positive below the horizontal.
 - "geomagneticFieldF": Geomagnetic field strength in nT, calculated from and consistent with XYZ or HDZ field elements.
 - "geomagneticFieldS": Geomagnetic field strength in nT, measured by an independent scalar instrument.
 
