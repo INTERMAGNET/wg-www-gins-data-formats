@@ -15,11 +15,11 @@
 1. Open actions from Rio meeting: https://github.com/INTERMAGNET/wg-www-gins-data-formats/blob/master/Meeting_2024-11/GINSubcommitteeMeetingMinutes.md - all items from meetings before Rio have either already been completed or are covered by discussion open issues on GitHub (previous agenda item) and will not be repeated under this item:
    1. [ ] SF to discuss MQTT impementation at the Kyoto GIN with SI.
    1. [ ] VM to investigate new ways of transferring data to the Edinburgh GIN.
+   1. [ ] CB to investigate new ways of transferring data to the Edinburgh GIN.
+   1. [ ] BG to investigate new ways of transferring data to the Edinburgh GIN.
    1. [ ] SF to update the MQTT documentation with changes to the topic and payload.
    1. [ ] SF to update BGS MQTT software and notify existing MQTT users of topic and payload changes.
    1. [ ] RL to add support for IMPF in MagPy.
    1. [ ] SF to rationalise MQTT and Seedlink documentation
-   1. [ ] CB to investigate new ways of transferring data to the Edinburgh GIN.
-   1. [ ] BG to investigate new ways of transferring data to the Edinburgh GIN.
    1. [ ] SF, CB, BG, VM to review GitHub issues.
    1. [ ] SF to organise regular online meetings of the subcommittee.
