@@ -1,4 +1,4 @@
-# Report of meeting of GIN Subcommittee during INTERMAGNET Lisbon meeting, 8th and 9th September 2025
+# Report of GIN Subcommittee meeting during INTERMAGNET Lisbon meeting, 8th and 9th September 2025
 
 See the meeting agenda here: https://github.com/INTERMAGNET/wg-www-gins-data-formats/blob/master/Meeting_2025-09/MeetingAgenda.md.
 
@@ -21,8 +21,8 @@ See the meeting agenda here: https://github.com/INTERMAGNET/wg-www-gins-data-for
 
 See GitHub issues here https://github.com/INTERMAGNET/wg-www-gins-data-formats/issues.
 
-1. Issue https://github.com/INTERMAGNET/wg-www-gins-data-formats/issues/14 has been closed, as it has been superseeded by a program of work that is being discussed at this meeting.
-1. Issue https://github.com/INTERMAGNET/wg-www-gins-data-formats/issues/13 has been closed, as it has been superseeded by a program of work that is being discussed at this meeting.
+1. Issue https://github.com/INTERMAGNET/wg-www-gins-data-formats/issues/14 has been closed, as it has been superseded by a program of work that is being discussed at this meeting.
+1. Issue https://github.com/INTERMAGNET/wg-www-gins-data-formats/issues/13 has been closed, as it has been superseded by a program of work that is being discussed at this meeting.
 1. Issue https://github.com/INTERMAGNET/wg-www-gins-data-formats/issues/12 has been closed, as it has been completed and written up here: https://github.com/INTERMAGNET/wg-www-gins-data-formats/tree/master/ImagMQTT.
 1. Issue https://github.com/INTERMAGNET/wg-www-gins-data-formats/issues/11 has been closed, as we were unsure what actions were being proposed.
 1. Issue https://github.com/INTERMAGNET/wg-www-gins-data-formats/issues/10 has been closed, as we believe there is nothing further to add.
@@ -33,36 +33,36 @@ See GitHub issues here https://github.com/INTERMAGNET/wg-www-gins-data-formats/i
 
 See the actions from this meeting here: https://github.com/INTERMAGNET/wg-www-gins-data-formats/blob/master/Meeting_2024-11/GINSubcommitteeMeetingMinutes.md.
 
- 1. [x] *SF to discuss MQTT impementation at the Kyoto GIN with SI*. This action has been superseeded by a program of work that is being discussed at this meeting.
- 1. [x] *VM to investigate new ways of transferring data to the Edinburgh GIN*. This action has been superseeded by a program of work that is being discussed at this meeting.
- 1. [x] *CB to investigate new ways of transferring data to the Edinburgh GIN*. This action has been superseeded by a program of work that is being discussed at this meeting.
- 1. [x] *BG to investigate new ways of transferring data to the Edinburgh GIN*. This action has been superseeded by a program of work that is being discussed at this meeting.
+ 1. [x] *SF to discuss MQTT impementation at the Kyoto GIN with SI*. This action has been superseded by a program of work that is being discussed at this meeting.
+ 1. [x] *VM to investigate new ways of transferring data to the Edinburgh GIN*. This action has been superseded by a program of work that is being discussed at this meeting.
+ 1. [x] *CB to investigate new ways of transferring data to the Edinburgh GIN*. This action has been superseded by a program of work that is being discussed at this meeting.
+ 1. [x] *BG to investigate new ways of transferring data to the Edinburgh GIN*. This action has been superseded by a program of work that is being discussed at this meeting.
  1. [x] *SF to update the MQTT documentation with changes to the topic and payload*. Updates have been made to the MQTT documentation
  1. [x] *SF to update BGS MQTT software and notify existing MQTT users of topic and payload changes*. Updates have been made to the software and users notified.
  1. [x] *RL to add support for IMPF in MagPy*. MagPy and MARTAS have been updated to include support for MQTT and its data formats.
- 1. [x] *SF to rationalise MQTT and Seedlink documentation*.  This action has been superseeded by a program of work that is being discussed at this meeting.
+ 1. [x] *SF to rationalise MQTT and Seedlink documentation*.  This action has been superseded by a program of work that is being discussed at this meeting.
  1. [x] *SF, CB, BG, VM to review GitHub issues*. All GitHub issues were reviewed.
  1. [x] *SF to organise regular online meetings of the subcommittee*. An online meeting was held in March 2025.
 
-## Use of Seedlink for inter-GIN data transport (Canada, US)
+## Progress with use of Seedlink for inter-GIN data transport (Canada, US)
 
-It should be possible to complete the replacement of Rsync transfers from Canada and the US to the UK by the end of 2025.
+Summary: It should be possible to complete the replacement of Rsync transfers from Canada and the US to the UK by the end of 2025.
 
 ### Canadian GIN (CB)
 
-Work to enable transfer of data between the Canadian and Edinburgh GINs using Seedlink is complete. All provisional data, except quasi-defintive data, is now being transferred using Seedlink. NRCan are not yet sending quasi-definitive data, but plan to do so using the Edinburgh GIN data subsmission web service.
+Work to transfer data between the Canadian and Edinburgh GINs using Seedlink is complete. All provisional data, except quasi-defintive data, is now being transferred using Seedlink. NRCan are not yet sending quasi-definitive data, but plan to do so using the Edinburgh GIN data subsmission web service.
 
-NRCan are looking are looking into a technology called nats.io, in particular the jetstream module, which will allow them to use MQTT. They may think about moving from Seedlink to MQTT in the future. They are thinking ahead about how to distribute data to clients in real-time and MQTT is one option for this. Potential clients include those with an interest in GIC.
+NRCan are looking are looking into a technology called nats.io, in particular the jetstream module, which will allow them to use MQTT. They may think about moving from Seedlink to MQTT in the future. They are thinking ahead about how to distribute data to clients in real-time and MQTT is one option for this. Potential clients for this service include those with an interest in GIC.
 
 ### US GIN (BG)
 
 The US currently have just a few observatories available via Seedlink, but will soon be able to send all observatories (when the Seedlink ring size is increased). We should be able to start test Seedlink transfers between the US and Edinburgh GINs after this meeting. Data compression and the requirement to fill a fixed length buffer mean that data can be delayed - they are looking at ways around this.
    
-USGS are investigating MQTT for internal data transport. This work will require a new database. The work is partly motivated by problems with network restrictions.
+USGS are investigating MQTT for internal data transport. This work will require a new database. The work is partly motivated by network restrictions.
 
-## Use of MQTT for inter-GIN data transport (France, Japan)
+## Progress with use of MQTT for inter-GIN data transport (France, Japan)
 
-It should be possible to complete the replacement of Rsync transfers from France and Japan to the UK by the end of 2026.
+Summary: It should be possible to complete the replacement of Rsync transfers from France and Japan to the UK by the end of 2026.
 
 ### French GIN (VM)
 
@@ -74,7 +74,7 @@ A report on progress was provided and can be seen here: https://github.com/INTER
 
 ## Use of MQTT for faster transport of data from observatories
 
-A number of observatories are using MQTT to send data to the Edinburgh GIN: BEL, DOU, HLP, HRN, MAB, VAL
+Six observatories are using MQTT to send data to the Edinburgh GIN. They are: BEL, DOU, HLP, HRN, MAB, VAL.
 
 ## Other discussions
 
@@ -97,11 +97,11 @@ SF had a list of observatories that appear to be sending reported data without a
 
 ## Actions
 
-- Complete implementation of Seedlink data transfer from Golden -> Edinburgh GIN (BG, SF)
-- Complete implementation of MQTT data transfer from Kyoto -> Edinburgh GIN (SI, SF)
-- Redesign Paris GIN (VM)
-- Implement MQTT data transfer from Paris -> Edinburgh GIN (VM, SF)
-- Implement the changes that were discussed to the Intermagnet data portal (SF)
-- Send list of observatories transmitting variometer data to CT (SF)
-- Organise an online GIN managers meeting (SF)
+- BG, SF: Complete implementation of Seedlink data transfer from Golden -> Edinburgh GIN
+- SI, SF: Complete implementation of MQTT data transfer from Kyoto -> Edinburgh GIN
+- VM: Redesign Paris GIN
+- VM, SF: Implement MQTT data transfer from Paris -> Edinburgh GIN
+- SF: Implement the changes that were discussed to the Intermagnet data portal
+- SF: Send list of observatories transmitting variometer data to CT
+- SF: Organise an online GIN managers meeting
 
