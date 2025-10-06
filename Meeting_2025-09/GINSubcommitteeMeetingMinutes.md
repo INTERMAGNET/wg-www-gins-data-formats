@@ -1,6 +1,6 @@
 # Report of GIN Subcommittee meeting during INTERMAGNET Lisbon meeting, 8th and 9th September 2025
 
-See the meeting agenda here: https://github.com/INTERMAGNET/wg-www-gins-data-formats/blob/master/Meeting_2025-09/MeetingAgenda.md.
+See the subcommittee meeting agenda here: https://github.com/INTERMAGNET/wg-www-gins-data-formats/blob/master/Meeting_2025-09/MeetingAgenda.md.
 
 ## Attendees
 - Charles Blais (CB)
@@ -33,7 +33,7 @@ See GitHub issues here https://github.com/INTERMAGNET/wg-www-gins-data-formats/i
 
 See the actions from this meeting here: https://github.com/INTERMAGNET/wg-www-gins-data-formats/blob/master/Meeting_2024-11/GINSubcommitteeMeetingMinutes.md.
 
- 1. [x] *SF to discuss MQTT impementation at the Kyoto GIN with SI*. This action has been superseded by a program of work that is being discussed at this meeting.
+ 1. [x] *SF to discuss MQTT implementation at the Kyoto GIN with SI*. This action has been superseded by a program of work that is being discussed at this meeting.
  1. [x] *VM to investigate new ways of transferring data to the Edinburgh GIN*. This action has been superseded by a program of work that is being discussed at this meeting.
  1. [x] *CB to investigate new ways of transferring data to the Edinburgh GIN*. This action has been superseded by a program of work that is being discussed at this meeting.
  1. [x] *BG to investigate new ways of transferring data to the Edinburgh GIN*. This action has been superseded by a program of work that is being discussed at this meeting.
@@ -50,7 +50,7 @@ Summary: It should be possible to complete the replacement of Rsync transfers fr
 
 ### Canadian GIN (CB)
 
-Work to transfer data between the Canadian and Edinburgh GINs using Seedlink is complete. All provisional data, except quasi-defintive data, is now being transferred using Seedlink. NRCan are not yet sending quasi-definitive data, but plan to do so using the Edinburgh GIN data subsmission web service.
+Work to transfer data between the Canadian and Edinburgh GINs using Seedlink is complete. All provisional data, except quasi-definitive data, is now being transferred using Seedlink. NRCan are not yet sending quasi-definitive data, but plan to do so using the Edinburgh GIN data submission web service.
 
 NRCan are looking are looking into a technology called nats.io, in particular the jetstream module, which will allow them to use MQTT. They may think about moving from Seedlink to MQTT in the future. They are thinking ahead about how to distribute data to clients in real-time and MQTT is one option for this. Potential clients for this service include those with an interest in GIC.
 
@@ -82,12 +82,12 @@ CB talked about the need to enable the user community to create their own tools 
 
 SF discussed the need to encourage observatories to send data in real-time - providing the technology for real-time transfer will not realise any benefits until observatories start using it.
 
-### The Intermagnet data protal
+### The Intermagnet data portal
 
 There were discussions during the plenary meeting about issues relating to the data portal:
 
 1. Users would like to see an information "(i)" icon on all labels on all pages to make it clearer that help information is available.
-1. JM sent email to SF (19/08/2025) describing problems downloading data, wherby the downloaded data contained an incorrect scalar F value: When selecting "calculated components X Y Z F(scalar)" we get recorded F. For example peg20250802vsec.sec where we get calculated F and not recorded F in the IAGA-2002 downloaded file (and I would expect recorded F as I selected recorded components). Investigate this issue and fix any associated problems.
+1. JM sent email to SF (19/08/2025) describing problems downloading data, whereby the downloaded data contained an incorrect scalar F value: When selecting "calculated components X Y Z F(scalar)" we get recorded F. For example peg20250802vsec.sec where we get calculated F and not recorded F in the IAGA-2002 downloaded file (and I would expect recorded F as I selected recorded components). Investigate this issue and fix any associated problems.
 1. There is confusion about the view/download button - it doesn't download! Find a better way to lay out this page.
 1. SB requested that we add acknowledgement text to data download scripts (in the same way that it is currently added to IAGA-2002 and CDF data files).
 
